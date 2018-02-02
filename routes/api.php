@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get("parking/{lat}/{lng}/{radius}","ParkingController@index");
+Route::post("user","UserController@store");
