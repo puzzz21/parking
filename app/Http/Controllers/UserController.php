@@ -33,4 +33,26 @@ class UserController extends Controller
         return response()->json("user created", 200);
 
     }
+    public function login(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            "email" => "required|email",
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            $status = 500;
+            $body = $validator->errors()->all()[0];
+            return response()->json($body, $status);
+        }
+        $user = User::where("email", $request->email)->first();
+        if($user)
+        {
+            if(\Hash::check($request->password,$user->password))
+            {
+                return response()->json($user,200);
+            }
+        }
+        return respose()->json("credential mismatch", 500);
+    }
 }

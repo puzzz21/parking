@@ -41,4 +41,9 @@ class ParkingController extends Controller
         }
 
     }
+
+    public function abc()
+    {
+        return '1';
+    }
 }
