@@ -20,4 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get("parking/{lat}/{lng}/{radius}","ParkingController@index");
 Route::post("user","UserController@store");
 Route::get("login","UserController@login");
-Route::get("abc","ParkingController@abc")
+Route::get("abc","ParkingController@abc");
