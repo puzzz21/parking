@@ -13,14 +13,14 @@ class UserController extends Controller
     {
         $validator = \Validator::make($request->all(), [
             'password' => 'required|confirmed',
-            "email" => "required|email",
+            "email" => "required|email|unique:users",
             "username" => "required"
         ]);
 
         if ($validator->fails()) {
             $status = 500;
             $body = $validator->errors()->all()[0];
-            return response()->json($body, $status);
+            return ["data" => $body, "status" => $status];
         }
         $user = new User;
         $user->name = $request->name;
@@ -30,7 +30,7 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->phone_number = $request->phone_number;
         $user->save();
-        return response()->json("user created", 200);
+        return ["data" => ["user created"], "status" => 200];
 
     }
     public function login(Request $request)
@@ -43,17 +43,17 @@ class UserController extends Controller
         if ($validator->fails()) {
             $status = 500;
             $body = $validator->errors()->all()[0];
-            return response()->json($body, $status);
+            return ["data" => $body, "status" => $status];
         }
         $user = User::where("email", $request->email)->first();
         if($user)
         {
             if(\Hash::check($request->password,$user->password))
             {
-                return response()->json($user,200);
+                return ["data" => $user, "status" => 200];
             }
         }
 
-        return response()->json("credential mismatch", 500);
+        return ["data" => "credential mismatch", "status" => 500];
     }
 }

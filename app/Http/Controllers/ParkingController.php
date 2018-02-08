@@ -35,9 +35,9 @@ class ParkingController extends Controller
                     "current_bike_ability" => $data->current_bike_ability
                 ];
             }
-            return response()->json($record,200);
-        }else{
-            return response()->json(["parking not available"],500);
+            return ["data" => $record, "status" => 200];
+        } else {
+            return ["data" => ["parking not available"], "status" => 500];
         }
 
     }
