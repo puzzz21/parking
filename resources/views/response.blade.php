@@ -13,10 +13,10 @@
 <div class="container">
    <center> @if($status == 200)
         <h2>Success</h2>
-        <p>Your suggestion has been sent.</p>
+        <p>{{ $body  }}</p>
     @else
         <h2>Sorry</h2>
-        <p>Your suggestion could not be sent.</p>
+        <p>{{ $body }}</p>
     @endif
    </center>
 </div>

@@ -25,8 +25,7 @@ class SuggestController extends Controller
         if ($validator->fails()) {
             $status = 500;
             $body = $validator->errors()->all()[0];
-            return response()->view("response", compact('status'));
-//            return ["data" => $body, "status" => $status];
+            return response()->view("response", compact('status','body'));
         }
 
         $response = Suggest::firstOrCreate([
@@ -37,10 +36,12 @@ class SuggestController extends Controller
         ]);
         if ($response) {
             $status = "200";
-            return response()->view("response", compact('status'));
+            $body="Your suggestion has been sent";
+            return response()->view("response", compact('status','body'));
         } else {
             $status = "500";
-            return response()->view("response", compact('status'));
+            $body="Your suggestion could not be sent";
+            return response()->view("response", compact('status','body'));
         }
 
     }

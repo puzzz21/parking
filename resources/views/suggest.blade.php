@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
             <label for="desc">Description:</label>
-            <textarea class="form-control" id="desc" placeholder="Enter description" name="desc" rows="5">
+            <textarea class="form-control" id="description" placeholder="Enter description" name="description" rows="5">
             </textarea>
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
