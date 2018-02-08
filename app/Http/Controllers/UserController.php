@@ -53,6 +53,7 @@ class UserController extends Controller
                 return response()->json($user,200);
             }
         }
-        return respose()->json("credential mismatch", 500);
+
+        return response()->json("credential mismatch", 500);
     }
 }
